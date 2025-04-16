@@ -1,0 +1,24 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import '../css/navbar.css'
+
+const NavBar = () => {
+    return (
+        <nav className='navbar-container'>
+            <h2> My Recipe Book</h2>
+            <div className='nav-links'>
+                <Link to='/'>
+                    Home 
+                </Link>
+                <Link to='recipeList'>
+                    Recipe List
+                </Link>
+                <Link to='signupForm'>
+                    Sign Up
+                </Link>
+            </div>
+        </nav>
+    )
+}
+
+export default NavBar
