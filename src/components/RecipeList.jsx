@@ -1,13 +1,43 @@
-// import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import '../css/recipeList.css'
 
-// function RecipeList(){
-    
+const RecipeList = ({ recipes, setFavRecipe, setSingleRecipe }) => {
+    const navigate = useNavigate();
 
-//     useEffect
+    const handleClick = (recipe) => {
+        setSingleRecipe(recipe);
+        navigate(`/recipe/${recipe.idMeal}`)
+    };
 
-//     return (
+    return (
+        <div className='recipes-container'>
+            {recipes.map((recipe) => {
+                const {strMeal, idMeal, strMealThumb} = recipe;
+                return (
+                    <div key={idMeal} className='recipe-card'>
+                        <h2>
+                            <u>{strMeal}</u>
+                        </h2>
+                        <img 
+                            className='recipe-img'
+                            src={strMealThumb}
+                            onError={(e) => {
+                                e.target.onerror = null; // Prevent infinite loop in case fallback fails
+                                e.target.src = 'https://kirbyandtheforgottenland.nintendo.com/assets/images/gameplay/kirby-sleeping.png'; 
+                            }} />
+                        <br />
+                        <button onClick={() => setFavRecipe(recipe)}>
+                            Favourite
+                        </button>
+                        &nbsp;
+                        <button onClick={() => handleClick(recipe)}>
+                            More Info
+                        </button>
+                    </div>
+                )
+            })}
+        </div>
+    )
+}
 
-//     )
-// }
-
-// export data RecipeList
+export default RecipeList

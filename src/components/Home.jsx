@@ -4,18 +4,18 @@ import '../css/home.css';
 
 const Home = () => {
     const navigate = useNavigate();
-    
+
     return (
-        <div>
+        <div className='home-container'>
             <Header />
             <h2>
                 Click Below to See All of Our Recipes!
             </h2>
-            <button onClick={() => navigate("/recipeList")}>
+            <button className='home-button' onClick={() => navigate("/recipeList")}>
                 Click Here!
-          </button>
+            </button>
         </div>
-    )
+    );
 }
 
 export default Home

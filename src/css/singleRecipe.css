@@ -1,0 +1,21 @@
+.single-recipe-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 2rem auto;
+}
+
+.single-recipe-img {
+    width: 520px;
+    height: 500px;
+    border: 3px solid black;
+    border-radius: 17px;
+    margin-bottom: .25rem;
+    background-color: rgb(101, 96, 96);
+}
+
+.back-button {
+    max-width: 200px;
+    margin: 0 auto;
+}
