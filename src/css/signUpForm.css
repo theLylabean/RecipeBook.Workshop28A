@@ -1,0 +1,50 @@
+.form-container {
+    margin: 2rem auto;
+    display: flex;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;    
+    max-height: 700px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: #8b5cf6;
+    border-radius: 12px;
+    box-shadow: 0 4px #5b21b6;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    width: 100%;
+    max-width: 700px;
+    height: 100%;
+    max-height: 700px;
+    flex-wrap: wrap;
+}
+
+.form-left-column,
+.form-right-column {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem;
+}
+
+input {
+    font-family: 'KirbyClassic', sans-serif;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 17px;
+}
+
+.form-button {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    width: 100%;
+    
+}

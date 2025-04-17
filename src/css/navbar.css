@@ -15,11 +15,32 @@
     max-width: 100%;
     overflow-x: hidden;
     box-sizing: border-box;
+    color: white;
 }
 
 .nav-links {
     display: flex;
-  gap: 1.25rem; /* spacing between links */
-  /* font-family: 'Macondo'; */
-  font-size: 1.5rem;
+    gap: 1.25rem; /* spacing between links */
+    /* font-family: 'Macondo'; */
+}
+
+.nav-links a {
+    /* font-size: 1.5rem;
+    color: white; */
+    text-decoration: none;
+    background-color: #a6ffea;
+    color: black;
+    font-family: 'KirbyClassic';
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    box-shadow: 0 4px #14a583;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.nav-links a:hover {
+    cursor: pointer;
+    color: rgb(251, 160, 175);
+    transform: scale(1.2);
 }

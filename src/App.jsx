@@ -5,11 +5,19 @@ import Home from './components/Home';
 import './css/App.css';
 import RecipeList from './components/RecipeList';
 import SingleRecipe from './components/SingleRecipe';
+import SignUpForm from './components/SignUpForm';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [singleRecipe, setSingleRecipe] = useState([]);
   const [favRecipe, setFavRecipe] = useState(null);
+  const [registeredUsers, setRegisteredUsers] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const registerUser = (newUser) => {
+    setRegisteredUsers(prev => [...prev, newUser]);
+    console.log(registerUser);
+  }
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -52,7 +60,11 @@ function App() {
             } />
             <Route 
               path='signupForm' 
-              element={'signupForm' } 
+              element={
+                <SignUpForm
+                  registerUser={registerUser}
+                />
+              } 
             />
           </Routes>
       </Router>
