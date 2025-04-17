@@ -1,5 +1,5 @@
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import '../css/accountPage.css';
 
 const AccountPage = ({ currentUser, setCurrentUser, isLoading }) => {
 
@@ -8,10 +8,12 @@ const AccountPage = ({ currentUser, setCurrentUser, isLoading }) => {
     }
 
     return (
-        <div>
-            <Link to='/account/favRecipes'>
-                Favourite Recipes
-            </Link>
+        <div className='favRecipes-container'>
+            <div className='aboutPage-links'>
+                <Link to='/account/favRecipes'>
+                    Favourite Recipes
+                </Link>
+            </div>
         </div>
     );
 }

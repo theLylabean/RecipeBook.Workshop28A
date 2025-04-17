@@ -1,0 +1,24 @@
+.favRecipes-container {
+    margin: 2rem auto;
+}
+
+.aboutPage-links a {
+    /* font-size: 1.5rem;
+    color: white; */
+    text-decoration: none;
+    background-color: #8b5cf6;
+    color: black;
+    font-family: 'KirbyClassic';
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    box-shadow: 0 4px #5b21b6;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.aboutPage-links a:hover {
+    cursor: pointer;
+    color: rgb(251, 160, 175);
+    transform: scale(1.1);
+}
