@@ -8,7 +8,30 @@ const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe }) => {
         setSingleRecipe(recipe);
         navigate(`/recipe/${recipe.idMeal}`)
     };
-    
+
+    const addToFavourites = async (recipe) => {
+        try {
+            const res = await fetch("https://fsa-recipe.up.railway.app/api/favorites", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: "Bearer your_token_here"
+                },
+                body: JSON.stringify({
+                  mealId: recipe.idMeal,
+                  name: recipe.strMeal,
+                  imageUrl: recipe.strMealThumb,
+                  strArea: recipe.strArea,
+                })
+            });
+
+            const result = await res.json();
+            console.log(result.message);
+            setFavRecipes((prev) => [...prev, result.data])
+        } catch (error) {
+            console.error('Error adding favourite:', error);
+        }
+    };
 
     return (
         <div className='recipes-container'>
@@ -27,15 +50,7 @@ const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe }) => {
                                 e.target.src = 'https://kirbyandtheforgottenland.nintendo.com/assets/images/gameplay/kirby-sleeping.png'; 
                             }} />
                         <br />
-                        <button 
-                            onClick={() => {
-                                setFavRecipes(prev => {
-                                    const updated = [...prev, recipe]
-                                    console.log('Updated favourites:', updated);
-                                    return updated;
-                                });
-                            }}
-                        >
+                        <button onClick={() => addToFavourites(recipe)}>
                             Favourite
                         </button>
                         &nbsp;

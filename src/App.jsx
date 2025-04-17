@@ -9,6 +9,7 @@ import FavRecipes from './components/FavRecipes';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
 import Authenticate from './components/Authenticate';
+import PrivateRoute from './components/PrivateRoute';
 import AccountPage from './components/AccountPage';
 
 function App() {
@@ -40,7 +41,6 @@ function App() {
     } else {
       localStorage.removeItem('token');
     }
-    setIsLoading(false);
   }, [token]);
  
 
@@ -56,6 +56,7 @@ function App() {
         <Authenticate
           token={token}
           setCurrentUser={setCurrentUser}
+          setIsLoading={setIsLoading}
         />
         <NavBar />
           <Routes>
@@ -82,9 +83,11 @@ function App() {
             <Route
               path='/account/favRecipes'
               element={
-                <FavRecipes
-                  favRecipes={favRecipes}
-                  setFavRecipes={setFavRecipes} />
+                <PrivateRoute currentUser={currentUser} isLoading={isLoading}>
+                  <FavRecipes
+                    favRecipes={favRecipes}
+                    setFavRecipes={setFavRecipes} />
+                </PrivateRoute>
               }
             />
             <Route 
@@ -110,11 +113,13 @@ function App() {
             <Route
               path='account'
               element={
-                <AccountPage
-                  currentUser={currentUser}
-                  setCurrentUser={setCurrentUser}
-                  isLoading={isLoading}
-                />
+                <PrivateRoute currentUser={currentUser} isLoading={isLoading}>
+                  <AccountPage
+                    currentUser={currentUser}
+                    setCurrentUser={setCurrentUser}
+                    isLoading={isLoading}
+                  />
+                </PrivateRoute>
               }
             />
           </Routes>

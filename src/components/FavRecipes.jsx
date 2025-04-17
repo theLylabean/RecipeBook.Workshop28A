@@ -24,12 +24,12 @@ const FavRecipes = ({ favRecipes, setFavRecipes }) => {
                             onClick={() => {
                                 setFavRecipes(prev => {
                                     const updated = prev.filter((fav) => fav.ideMeal !== recipe.idMeal);
-                                    console.log('Favourites updated:', updated);
+                                    console.log('Favourites update:', updated);
                                     return updated
                                 });
                             }}
                         >
-                            Favourite
+                            Remove Favourite
                         </button>
                         &nbsp;
                         <button onClick={() => handleClick(recipe)}>
