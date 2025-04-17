@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../css/loginForm.css';
 
-function LoginForm({ setCurrentUser }){
+function LoginForm({ setCurrentUser, setToken }){
     const navigate = useNavigate();
     const [login, setLogin] = useState({
         email: '',
@@ -26,13 +26,10 @@ function LoginForm({ setCurrentUser }){
                   password: login.password
                 })
             });
-            const info = await res.json();
-            console.log(info)
-            if (info.token && info.username) {
-                localStorage.setItem('token', info.token);
-                localStorage.setItem('username', info.username);
-                
-                setCurrentUser({ username: info.username });
+            const result = await res.json();
+            console.log(result)
+            if (result.token && result.username) {
+                setToken(result.token)
                 navigate('/account');
         } else {
             console.error('Login failed');

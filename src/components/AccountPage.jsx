@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const AccountPage = ({ currentUser, setCurrentUser, isLoading }) => {
     const navigate = useNavigate();
@@ -15,8 +15,11 @@ const AccountPage = ({ currentUser, setCurrentUser, isLoading }) => {
     }
 
     return (
-        <h1>Welcome to Your Account Page</h1>
-
+        <div>
+            <Link to='/account/favRecipes'>
+                Favourite Recipes
+            </Link>
+        </div>
     );
 }
 

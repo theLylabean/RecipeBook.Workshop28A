@@ -5,22 +5,20 @@ import Home from './components/Home';
 import './css/App.css';
 import RecipeList from './components/RecipeList';
 import SingleRecipe from './components/SingleRecipe';
+import FavRecipes from './components/FavRecipes';
 import SignUpForm from './components/SignUpForm';
 import LoginForm from './components/LoginForm';
+import Authenticate from './components/Authenticate';
 import AccountPage from './components/AccountPage';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
   const [singleRecipe, setSingleRecipe] = useState([]);
-  const [favRecipe, setFavRecipe] = useState(null);
+  const [favRecipes, setFavRecipes] = useState([]);
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [token, setToken] = useState(() => localStorage.getItem('token') || null);
   const [isLoading, setIsLoading] = useState(true);
-
-  // const registerUser = (newUser) => {
-  //   setRegisteredUsers(prev => [...prev, newUser]);
-  //   console.log(registerUser);
-  // }
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -37,25 +35,28 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const username = localStorage.getItem('username');
-
-    console.log('Reestoring from localStorage:', { token, username })
-
-    if (token && username) {
-      setCurrentUser({ username });
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token');
     }
-
     setIsLoading(false);
-  }, []);
+  }, [token]);
+ 
 
   useEffect(() => {
     console.log('Current user after restore:', currentUser);
   }, [currentUser]);
 
+  console.log(favRecipes);
+
   return (
     <div>
       <Router>
+        <Authenticate
+          token={token}
+          setCurrentUser={setCurrentUser}
+        />
         <NavBar />
           <Routes>
             <Route 
@@ -68,7 +69,7 @@ function App() {
                 <RecipeList 
                   recipes={recipes} 
                   setRecipes={setRecipes} 
-                  setFavRecipe={setFavRecipe}
+                  setFavRecipes={setFavRecipes}
                   setSingleRecipe={setSingleRecipe} /> 
             } />
             <Route 
@@ -78,11 +79,21 @@ function App() {
                   singleRecipe={singleRecipe} 
                   setSingleRecipe={setSingleRecipe} /> 
             } />
+            <Route
+              path='/account/favRecipes'
+              element={
+                <FavRecipes
+                  favRecipes={favRecipes}
+                  setFavRecipes={setFavRecipes} />
+              }
+            />
             <Route 
               path='signUpForm' 
               element={
                 <SignUpForm
                   setCurrentUser={setCurrentUser}
+                  token={token}
+                  setToken={setToken}
                 />
               } 
             />
@@ -91,6 +102,8 @@ function App() {
               element={
                 <LoginForm
                   setCurrentUser={setCurrentUser}
+                  token={token}
+                  setToken={setToken}
                 />
               }  
             />

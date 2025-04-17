@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../css/signUpForm.css';
 
-function SignUpForm({ setCurrentUser }){
+function SignUpForm({ setCurrentUser, setToken }){
     const [createUserAccount, setCreateUserAccount] = useState({
         firstName: '',
         lastName: '',
@@ -27,9 +27,10 @@ function SignUpForm({ setCurrentUser }){
               password: createUserAccount.password,
             })
         })
-        const info = await res.json();
-        console.log(info);
-        setCurrentUser({ username: info.username });
+        const result = await res.json();
+        console.log(result);
+        setCurrentUser({ username: result.username });
+        setToken(result.token);
     }
 
     return (

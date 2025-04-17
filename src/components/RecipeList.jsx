@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import '../css/recipeList.css'
 
-const RecipeList = ({ recipes, setFavRecipe, setSingleRecipe }) => {
+const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe }) => {
     const navigate = useNavigate();
 
     const handleClick = (recipe) => {
         setSingleRecipe(recipe);
         navigate(`/recipe/${recipe.idMeal}`)
     };
+    
 
     return (
         <div className='recipes-container'>
@@ -26,7 +27,15 @@ const RecipeList = ({ recipes, setFavRecipe, setSingleRecipe }) => {
                                 e.target.src = 'https://kirbyandtheforgottenland.nintendo.com/assets/images/gameplay/kirby-sleeping.png'; 
                             }} />
                         <br />
-                        <button onClick={() => setFavRecipe(recipe)}>
+                        <button 
+                            onClick={() => {
+                                setFavRecipes(prev => {
+                                    const updated = [...prev, recipe]
+                                    console.log('Updated favourites:', updated);
+                                    return updated;
+                                });
+                            }}
+                        >
                             Favourite
                         </button>
                         &nbsp;
