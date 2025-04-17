@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import '../css/navbar.css'
 
-const NavBar = () => {
+function NavBar(){
+
     return (
         <nav className='navbar-container'>
             <h2> My Recipe Book</h2>
@@ -13,7 +14,10 @@ const NavBar = () => {
                 <Link to='recipeList'>
                     Recipe List
                 </Link>
-                <Link to='signupForm'>
+                <Link to='login'>
+                    Login
+                </Link>
+                <Link to='signUpForm'>
                     Sign Up
                 </Link>
             </div>

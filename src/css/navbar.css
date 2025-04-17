@@ -44,3 +44,26 @@
     color: rgb(251, 160, 175);
     transform: scale(1.2);
 }
+
+select,
+option {
+    background-color: #a6ffea;
+    color: black;
+    font-family: 'KirbyClassic';
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    box-shadow: 0 4px #14a583;
+    cursor: pointer;
+    flex: 1;
+    width: 100%;
+    /* transition: all 0.1s eas */
+}
+
+/* option {
+    font-family: 'KirbyClassic';
+    background-color: #a6ffea;
+    color: black;
+    font-size: 1.25rem;
+} */
+

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import '../css/signUpForm.css';
 
-function SignUpForm({ registerUser, setCurrentUser }){
+function SignUpForm({ setCurrentUser }){
     const [createUserAccount, setCreateUserAccount] = useState({
         firstName: '',
         lastName: '',
@@ -17,11 +17,19 @@ function SignUpForm({ registerUser, setCurrentUser }){
         }));
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        registerUser(createUserAccount);
-        console.log('Form submitted:', createUserAccount);
-        setCurrentUser(createUserAccount);
+        const res = await fetch("https://fsa-recipe.up.railway.app/api/auth/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              username: createUserAccount.email,
+              password: createUserAccount.password,
+            })
+        })
+        const info = await res.json();
+        console.log(info);
+        setCurrentUser({ username: info.username });
     }
 
     return (

@@ -6,6 +6,8 @@ import './css/App.css';
 import RecipeList from './components/RecipeList';
 import SingleRecipe from './components/SingleRecipe';
 import SignUpForm from './components/SignUpForm';
+import LoginForm from './components/LoginForm';
+import AccountPage from './components/AccountPage';
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -14,10 +16,10 @@ function App() {
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-  const registerUser = (newUser) => {
-    setRegisteredUsers(prev => [...prev, newUser]);
-    console.log(registerUser);
-  }
+  // const registerUser = (newUser) => {
+  //   setRegisteredUsers(prev => [...prev, newUser]);
+  //   console.log(registerUser);
+  // }
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -59,12 +61,28 @@ function App() {
                   setSingleRecipe={setSingleRecipe} /> 
             } />
             <Route 
-              path='signupForm' 
+              path='signUpForm' 
               element={
                 <SignUpForm
-                  registerUser={registerUser}
+                  setCurrentUser={setCurrentUser}
                 />
               } 
+            />
+            <Route
+              path='login'
+              element={
+                <LoginForm
+                  setCurrentUser={setCurrentUser}
+                />
+              }  
+            />
+            <Route
+              path='account'
+              element={
+                <AccountPage
+
+                />
+              }
             />
           </Routes>
       </Router>
