@@ -5,8 +5,9 @@
 .home-button {
     background-color: #8b5cf6;
     box-shadow: 0 4px #5b21b6;
-    max-width: 200px;
+    max-width: 400px;
     margin: 0 auto;
+    font-size: 2rem;
 }
 
 .home-container {

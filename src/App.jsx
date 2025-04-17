@@ -15,6 +15,7 @@ function App() {
   const [favRecipe, setFavRecipe] = useState(null);
   const [registeredUsers, setRegisteredUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // const registerUser = (newUser) => {
   //   setRegisteredUsers(prev => [...prev, newUser]);
@@ -33,7 +34,24 @@ function App() {
       }
     }
     fetchRecipes();
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    const username = localStorage.getItem('username');
+
+    console.log('Reestoring from localStorage:', { token, username })
+
+    if (token && username) {
+      setCurrentUser({ username });
+    }
+
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    console.log('Current user after restore:', currentUser);
+  }, [currentUser]);
 
   return (
     <div>
@@ -80,7 +98,9 @@ function App() {
               path='account'
               element={
                 <AccountPage
-
+                  currentUser={currentUser}
+                  setCurrentUser={setCurrentUser}
+                  isLoading={isLoading}
                 />
               }
             />

@@ -20,7 +20,7 @@
 
 .nav-links {
     display: flex;
-    gap: 1.25rem; /* spacing between links */
+    gap: .75rem; /* spacing between links */
     /* font-family: 'Macondo'; */
 }
 
@@ -42,7 +42,7 @@
 .nav-links a:hover {
     cursor: pointer;
     color: rgb(251, 160, 175);
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 select,

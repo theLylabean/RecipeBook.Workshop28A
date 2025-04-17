@@ -26,11 +26,18 @@ function LoginForm({ setCurrentUser }){
                   password: login.password
                 })
             });
-            const info = res.json();
+            const info = await res.json();
             console.log(info)
-            setCurrentUser({ username: info.username });
-            navigate('/account');
+            if (info.token && info.username) {
+                localStorage.setItem('token', info.token);
+                localStorage.setItem('username', info.username);
+                
+                setCurrentUser({ username: info.username });
+                navigate('/account');
+        } else {
+            console.error('Login failed');
         }
+    };
 
       return (
         <div className='login-form-container'>

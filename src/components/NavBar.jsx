@@ -17,6 +17,9 @@ function NavBar(){
                 <Link to='login'>
                     Login
                 </Link>
+                <Link to='account'>
+                    Your Account
+                </Link>
                 <Link to='signUpForm'>
                     Sign Up
                 </Link>
