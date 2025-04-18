@@ -23,21 +23,16 @@ const FavRecipes = ({ favRecipes, setFavRecipes, token }) => {
         }
     };
 
-    useEffect(() => {
-        if(!isLoadingFaves && Array.isArray(favRecipes) && favRecipes.length === 0) {
-            navigate('/recipeList');
-        }
-    }, [favRecipes, navigate])
-
+    
     useEffect(() => {
         const fetchFavourites = async () => {
             try {
                 const res = await fetch("https://fsa-recipe.up.railway.app/api/favorites", {
                     headers: {
-                      Authorization: `Bearer ${token}`,
+                        Authorization: `Bearer ${token}`,
                     },
                 });
-
+                
                 const result = await res.json();
                 console.log('Fetched favourites:', result);
                 setFavRecipes(result.data);
@@ -47,13 +42,24 @@ const FavRecipes = ({ favRecipes, setFavRecipes, token }) => {
                 setIsLoadingFaves(false);
             }
         };
-
+        
         if (token) fetchFavourites();
     }, [token, isLoadingFaves, setFavRecipes]);
+    
+    if (isLoadingFaves) return <p>Loading your favourite recipes!</p>
 
     return (
-        <div>
+        <div className='favRecipes-container'>
             <h1>Your Favourite Recipes</h1>
+            {Array.isArray(favRecipes) && favRecipes.length === 0 ? (
+                <div className='empty-favourites'>
+                    <p>You do not have any favourite recipes yet!</p>
+                    <p>Please go back to the recipe list and mark your favourite recipe, then come back and it will appear here.</p>
+                    <button className='favRecipes-button' onClick={() => navigate('/recipeList')}>
+                        Go to Recipe List
+                    </button>
+                </div>
+            ) : (
                 <div className='recipes-container'>
                     {favRecipes.map((recipe) => (
                         <div key={recipe.id} className='recipe-card'>
@@ -78,6 +84,7 @@ const FavRecipes = ({ favRecipes, setFavRecipes, token }) => {
                             </div>
                     ))}
                 </div>
+            )}
         </div>
     );
 };

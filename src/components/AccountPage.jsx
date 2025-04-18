@@ -10,6 +10,7 @@ const AccountPage = ({ currentUser, setCurrentUser, isLoading }) => {
     return (
         <div className='favRecipes-container'>
             <div className='aboutPage-links'>
+                <h1>Welcome, {currentUser?.firstName}!</h1>
                 <Link to='/account/favRecipes'>
                     Favourite Recipes
                 </Link>

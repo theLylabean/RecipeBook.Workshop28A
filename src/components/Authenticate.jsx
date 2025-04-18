@@ -5,10 +5,10 @@ function Authenticate({ setCurrentUser, token, setIsLoading }){
     const navigate = useNavigate();
 
     useEffect(() => {
-    if (!token) {
-        navigate('/login');
-        return;
-    }
+    // if (!token) {
+    //     navigate('/login');
+    //     return;
+    // }
 
     const fetchUser = async () => {
           try {
@@ -27,7 +27,7 @@ function Authenticate({ setCurrentUser, token, setIsLoading }){
           } catch (error) {
             console.error('Authentication failed:', error);
             setCurrentUser(null);
-            navigate('/login');
+            // navigate('/login');
           } finally {
             setIsLoading(false);
           }

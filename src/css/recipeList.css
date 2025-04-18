@@ -16,7 +16,7 @@
 
 .recipe-card {
     display: block;
-    /* margin: .25rem; */
+    margin: .25rem;
     padding-bottom: .5rem;
     background-color: #8b5cf6;
     border-radius: 17px;

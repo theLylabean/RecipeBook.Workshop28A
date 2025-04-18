@@ -29,7 +29,7 @@ function SignUpForm({ setCurrentUser, setToken }){
         })
         const result = await res.json();
         console.log(result);
-        setCurrentUser({ username: result.username });
+        setCurrentUser({ username: result.username, name: result.firstName });
         setToken(result.token);
     }
 

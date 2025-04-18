@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import '../css/recipeList.css'
 import fallbackImage from '../pictures/kirby3.jpg'
 
-const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe, token }) => {
+const RecipeList = ({ setFavRecipes, setSingleRecipe, token }) => {
     const navigate = useNavigate();
 
     const handleClick = (recipe) => {

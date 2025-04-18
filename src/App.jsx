@@ -20,6 +20,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(() => localStorage.getItem('token') || null);
   const [isLoading, setIsLoading] = useState(true);
+  const [searchKeyword, setSearchKeyword] = useState('');
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -34,6 +35,11 @@ function App() {
     }
     fetchRecipes();
   }, []);
+
+  const filteredRecipes = recipes.filter((recipe) => {
+    recipe.strMeal?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+    recipe.strArea?.toLowerCase().includes(searchKeyword)
+  });
 
   useEffect(() => {
     if (token) {
@@ -58,17 +64,19 @@ function App() {
           setCurrentUser={setCurrentUser}
           setIsLoading={setIsLoading}
         />
-        <NavBar />
+        <NavBar
+          setSearchKeyword={setSearchKeyword}
+        />
           <Routes>
             <Route 
               path='/' 
               element={ <Home /> } 
           />
             <Route 
-              path='recipeList' 
+              path='/recipeList' 
               element={ 
                 <RecipeList 
-                  recipes={recipes} 
+                  recipes={filteredRecipes} 
                   setRecipes={setRecipes} 
                   setFavRecipes={setFavRecipes}
                   setSingleRecipe={setSingleRecipe}
@@ -93,7 +101,7 @@ function App() {
               }
             />
             <Route 
-              path='signUpForm' 
+              path='/signUpForm' 
               element={
                 <SignUpForm
                   setCurrentUser={setCurrentUser}
@@ -103,7 +111,7 @@ function App() {
               } 
             />
             <Route
-              path='login'
+              path='/login'
               element={
                 <LoginForm
                   setCurrentUser={setCurrentUser}
@@ -113,7 +121,7 @@ function App() {
               }  
             />
             <Route
-              path='account'
+              path='/account'
               element={
                 <PrivateRoute currentUser={currentUser} isLoading={isLoading}>
                   <AccountPage

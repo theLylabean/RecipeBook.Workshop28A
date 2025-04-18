@@ -1,3 +1,11 @@
-h1 {
+.favRecipes-container {
     text-align: center;
+}
+
+.favRecipes-button {
+    background-color: #8b5cf6;
+    box-shadow: 0 4px #5b21b6;
+    max-width: 400px;
+    margin: 0 auto;
+    font-size: 1.2rem;
 }
