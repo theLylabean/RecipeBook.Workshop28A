@@ -71,7 +71,8 @@ function App() {
                   recipes={recipes} 
                   setRecipes={setRecipes} 
                   setFavRecipes={setFavRecipes}
-                  setSingleRecipe={setSingleRecipe} /> 
+                  setSingleRecipe={setSingleRecipe}
+                  token={token} /> 
             } />
             <Route 
               path='/recipe/:id' 
@@ -86,7 +87,8 @@ function App() {
                 <PrivateRoute currentUser={currentUser} isLoading={isLoading}>
                   <FavRecipes
                     favRecipes={favRecipes}
-                    setFavRecipes={setFavRecipes} />
+                    setFavRecipes={setFavRecipes}
+                    token={token} />
                 </PrivateRoute>
               }
             />

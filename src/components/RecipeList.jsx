@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import '../css/recipeList.css'
+import fallbackImage from '../pictures/kirby3.jpg'
 
-const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe }) => {
+const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe, token }) => {
     const navigate = useNavigate();
 
     const handleClick = (recipe) => {
@@ -15,7 +16,7 @@ const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe }) => {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
-                  Authorization: "Bearer your_token_here"
+                  Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                   mealId: recipe.idMeal,
@@ -47,7 +48,7 @@ const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe }) => {
                             src={strMealThumb}
                             onError={(e) => {
                                 e.target.onerror = null; // Prevent infinite loop in case fallback fails
-                                e.target.src = 'https://kirbyandtheforgottenland.nintendo.com/assets/images/gameplay/kirby-sleeping.png'; 
+                                e.target.src = fallbackImage; 
                             }} />
                         <br />
                         <button onClick={() => addToFavourites(recipe)}>
