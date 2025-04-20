@@ -20,7 +20,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(() => localStorage.getItem('token') || null);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchKeyword, setSearchKeyword] = useState('');
+  const [selectedRecipe, setSelectedRecipe] = useState([]);
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -35,11 +35,6 @@ function App() {
     }
     fetchRecipes();
   }, []);
-
-  const filteredRecipes = recipes.filter((recipe) => {
-    recipe.strMeal?.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-    recipe.strArea?.toLowerCase().includes(searchKeyword)
-  });
 
   useEffect(() => {
     if (token) {
@@ -65,7 +60,8 @@ function App() {
           setIsLoading={setIsLoading}
         />
         <NavBar
-          setSearchKeyword={setSearchKeyword}
+          recipes={recipes}
+          setSelectedRecipe={setSelectedRecipe}
         />
           <Routes>
             <Route 
@@ -76,7 +72,7 @@ function App() {
               path='/recipeList' 
               element={ 
                 <RecipeList 
-                  recipes={filteredRecipes} 
+                  recipes={recipes} 
                   setRecipes={setRecipes} 
                   setFavRecipes={setFavRecipes}
                   setSingleRecipe={setSingleRecipe}

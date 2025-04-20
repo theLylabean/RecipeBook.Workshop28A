@@ -6,14 +6,18 @@ const Home = () => {
     const navigate = useNavigate();
 
     return (
-        <div className='home-container'>
-            <Header />
-            <h2>
-                Click Below to See All of Our Recipes!
-            </h2>
-            <button className='home-button' onClick={() => navigate("/recipeList")}>
-                Click Here!
-            </button>
+        <div>
+            <div className='header-container'>
+                <Header />
+            </div>
+            <div className='home-container'>
+                <h2>
+                    Click Below to See All of Our Recipes!
+                </h2>
+                <button className='home-button' onClick={() => navigate("/recipeList")}>
+                    Click Here!
+                </button>
+            </div>
         </div>
     );
 }

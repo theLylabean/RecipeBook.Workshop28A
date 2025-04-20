@@ -19,7 +19,7 @@ const SingleRecipe = () => {
           }
         }
         fetchRecipe();
-      }, [])
+      }, [id])
 
     return (
                 <div className='single-recipe-container'>
@@ -34,10 +34,15 @@ const SingleRecipe = () => {
                                         e.target.onerror = null; // Prevent infinite loop in case fallback fails
                                         e.target.src = 'https://kirbyandtheforgottenland.nintendo.com/assets/images/gameplay/kirby-sleeping.png'; 
                                 }} />
-                                <p>{recipe.strArea}</p>
-                                <p>{recipe.strCategory}</p>
-                                <p>{recipe.ingredients}</p>
-                                <p>{recipe.strInstructions}</p>
+                                <p><b>Area:</b> {recipe.strArea}</p>
+                                <p><b>Category:</b> {recipe.strCategory}</p>
+                                <p><b>Ingredients:</b></p>
+                                <ul>
+                                  {recipe.ingredients.map((ingredient, index) => (
+                                    <li key={index}>{ingredient}</li>
+                                  ))}
+                                </ul>
+                                <p><b>Instructions:</b> {recipe.strInstructions}</p>
                                 {recipe.strTags && <p>Tags: {recipe.strTags}</p>}
                             </div>
                         )

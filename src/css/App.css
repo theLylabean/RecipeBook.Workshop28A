@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: rgb(181, 255, 240);
+    background-color: aquamarine;
     font-family: 'KirbyClassic', sans-serif;
 }
 
@@ -19,7 +19,7 @@ input {
 }
 
 button {
-    background-color: #a6ffea;
+    background-color: aquamarine;
     color: black;
     font-family: 'KirbyClassic';
     border: none;
@@ -28,4 +28,9 @@ button {
     box-shadow: 0 4px #14a583;
     cursor: pointer;
     transition: all 0.1s ease;
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
 }

@@ -3,7 +3,7 @@ import '../css/favRecipes.css'
 import { useNavigate } from 'react-router-dom';
 import fallbackImage from '../pictures/kirb4.webp'
 
-const FavRecipes = ({ favRecipes, setFavRecipes, token }) => {
+const FavRecipes = ({ favRecipes, setFavRecipes, token, handleClick }) => {
     const navigate = useNavigate();
     const [isLoadingFaves, setIsLoadingFaves] = useState(true);
 
@@ -78,7 +78,7 @@ const FavRecipes = ({ favRecipes, setFavRecipes, token }) => {
                                     Remove Favourite
                                 </button>
                                 &nbsp;
-                                <button onClick={() => handleClick(recipe)}>
+                                <button onClick={() => navigate(`/recipe/${recipe.idMeal}`)}>
                                     More Info
                                 </button>
                             </div>
