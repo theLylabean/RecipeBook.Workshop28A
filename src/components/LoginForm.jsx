@@ -4,6 +4,7 @@ import '../css/loginForm.css';
 
 function LoginForm({ setCurrentUser, setToken }){
     const navigate = useNavigate();
+    const [loginError, setLoginError] = useState('');
     const [login, setLogin] = useState({
         email: '',
         password: '',
@@ -18,6 +19,9 @@ function LoginForm({ setCurrentUser, setToken }){
 
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
+        setLoginError('');
+
+        try {
             const res = await fetch("https://fsa-recipe.up.railway.app/api/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -30,9 +34,14 @@ function LoginForm({ setCurrentUser, setToken }){
             console.log(result)
             if (result.token && result.username) {
                 setToken(result.token)
+                setCurrentUser(result);
                 navigate('/account');
         } else {
-            console.error('Login failed');
+            setLoginError(result.message || '** Invalid username or password **');
+        }
+        } catch (err) {
+            console.error('Login error:', err);
+            setLoginError('Login failed. Please try again.')
         }
     };
 
@@ -65,6 +74,9 @@ function LoginForm({ setCurrentUser, setToken }){
                     </button>
                 </div>
             </form>
+            <div className='error-container'>
+                {loginError && <p className='error-message'>{loginError}</p>}
+            </div>
         </div>
       )
 }

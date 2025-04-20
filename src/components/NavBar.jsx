@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import '../css/navbar.css'
 
-function NavBar({ recipes, setSelectedRecipe }){
+function NavBar({ recipes, setSelectedRecipe, currentUser, setCurrentUser }){
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
     const inputRef = useRef(null);
@@ -21,7 +21,13 @@ function NavBar({ recipes, setSelectedRecipe }){
         
         setSearchInput(value);
         setSearchResults(filteredRecipes);
-    }
+    };
+
+    const handleLogout = () => {
+        setCurrentUser(null);
+        localStorage.removeItem('token');
+        navigate('/');
+    };
 
     return (
         <nav className='navbar-container'>
@@ -72,15 +78,28 @@ function NavBar({ recipes, setSelectedRecipe }){
                     <Link to='recipeList'>
                         Recipe List
                     </Link>
-                    <Link to='login'>
-                        Login
-                    </Link>
-                    <Link to='account'>
-                        Your Account
-                    </Link>
-                    <Link to='signUpForm'>
-                        Sign Up
-                    </Link>
+                    {currentUser ? (
+                        <>
+                            <Link to='account'>
+                                Your Account
+                            </Link>
+                            <button 
+                                className='logout-button' 
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to='login'>
+                                Login
+                            </Link>
+                            <Link to='signUpForm'>
+                                Sign Up
+                            </Link>
+                        </>
+                    )}
                 </div>
         </nav>
     );

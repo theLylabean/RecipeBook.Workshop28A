@@ -27,14 +27,19 @@ function Authenticate({ setCurrentUser, token, setIsLoading }){
           } catch (error) {
             console.error('Authentication failed:', error);
             setCurrentUser(null);
-            // navigate('/login');
+            navigate('/login');
           } finally {
             setIsLoading(false);
           }
         };
 
-            console.log('Authenticating with token:', token);
-            fetchUser();
+        if (token) {
+          fetchUser();
+        } else {
+          setIsLoading(false);
+          navigate('/login');
+        }
+          console.log('Authenticating with token:', token);
       }, [token]);
 
     return null;

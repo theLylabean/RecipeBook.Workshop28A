@@ -16,7 +16,6 @@ function App() {
   const [recipes, setRecipes] = useState([]);
   const [singleRecipe, setSingleRecipe] = useState([]);
   const [favRecipes, setFavRecipes] = useState([]);
-  const [registeredUsers, setRegisteredUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
   const [token, setToken] = useState(() => localStorage.getItem('token') || null);
   const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +61,8 @@ function App() {
         <NavBar
           recipes={recipes}
           setSelectedRecipe={setSelectedRecipe}
+          currentUser={currentUser}
+          setCurrentUser={setCurrentUser}
         />
           <Routes>
             <Route 

@@ -1,5 +1,6 @@
-import Header from './Header';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
+// import NewRecipeForm from './NewRecipeForm';
 import '../css/home.css';
 
 const Home = () => {
@@ -17,6 +18,7 @@ const Home = () => {
                 <button className='home-button' onClick={() => navigate("/recipeList")}>
                     Click Here!
                 </button>
+                {/* <NewRecipeForm /> */}
             </div>
         </div>
     );
