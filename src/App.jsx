@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
 import './css/App.css';
@@ -11,6 +12,9 @@ import LoginForm from './components/LoginForm';
 import Authenticate from './components/Authenticate';
 import PrivateRoute from './components/PrivateRoute';
 import AccountPage from './components/AccountPage';
+import NewRecipeForm from './components/NewRecipeForm';
+import MyRecipes from './components/MyRecipes';
+
 
 function App() {
   const [recipes, setRecipes] = useState([]);
@@ -20,6 +24,15 @@ function App() {
   const [token, setToken] = useState(() => localStorage.getItem('token') || null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedRecipe, setSelectedRecipe] = useState([]);
+  const [newUserRecipe, setNewUserRecipe] = useState({
+    strMeal: '',
+    strCategory: '',
+    strArea: '',
+    strInstructions: '',
+    strMealThumb: '',
+    strTags: '',
+    ingredients: '',
+  });
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -52,7 +65,6 @@ function App() {
 
   return (
     <div>
-      <Router>
         <Authenticate
           token={token}
           setCurrentUser={setCurrentUser}
@@ -125,12 +137,32 @@ function App() {
                     currentUser={currentUser}
                     setCurrentUser={setCurrentUser}
                     isLoading={isLoading}
+                    token={token}
                   />
                 </PrivateRoute>
               }
             />
+            <Route
+              path='/account/newuser-recipe'
+              element={
+                <NewRecipeForm 
+                  token={token}
+                  newUserRecipe={newUserRecipe}
+                  setNewUserRecipe={setNewUserRecipe}
+                />
+                }
+            />
+            <Route
+              path='/account/myrecipes'
+              element={
+                <MyRecipes
+                  token={token}
+                  newUserRecipe={newUserRecipe}
+                  setNewUserRecipe={setNewUserRecipe}
+                />
+              }
+            />
           </Routes>
-      </Router>
     </div>
   )
 }

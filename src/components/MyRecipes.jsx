@@ -1,0 +1,94 @@
+import { useState, useEffect } from 'react';
+import '../css/favRecipes.css'
+import { useNavigate } from 'react-router-dom';
+import fallbackImage from '../pictures/kirb4.webp'
+
+const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, addToFavourites }) => {
+    const navigate = useNavigate();
+    const [isLoadingUserRecipes, setIsLoadingUserRecipes] = useState(true);
+
+    // const removeFavourite = async (userRecipesId) => {
+    //     try {
+    //         const res = await fetch(`https://fsa-recipe.up.railway.app/api/recipes/user-recipes/${userRecipesId}`, {
+    //             method: "DELETE",
+    //             headers: {
+    //               Authorization: `Bearer ${token}`,
+    //             }
+    //         });
+
+    //         if (!res.ok) throw new Error('Failed to delete favourite');
+    //         setNewUserRecipe((prev) => prev.filter((fav) => fav.id !== favouriteId));
+    //     } catch (error) {
+    //         console.error('Error removing favourite:', error);
+    //     }
+    // };
+ 
+    useEffect(() => {
+        const fetchUserRecipes = async () => {
+            try {
+                const res = await fetch('https://fsa-recipe.up.railway.app/api/recipes/user-recipes', {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+                
+                const result = await res.json();
+                console.log('Fetched user recipes:', result);
+                setNewUserRecipe(result);
+                console.log("🧪 API raw response:", result);
+                console.log("🧪 result.data:", result);
+
+            } catch (error) {
+                console.error('Failed to fetch user created recipes:', error);
+            } finally {
+                setIsLoadingUserRecipes(false);
+            }
+        };
+        
+        if (token) fetchUserRecipes();
+    }, [token, isLoadingUserRecipes, setNewUserRecipe]);
+    
+    if (isLoadingUserRecipes) return <p>Loading your favourite recipes!</p>
+
+    return (
+        <div className='myrecipes-container'>
+            <h1>Your Created Recipes</h1>
+            {Array.isArray(newUserRecipe) && newUserRecipe.length === 0 ? (
+                <div className='empty-user-recipes'>
+                    <p>You have not created any recipes yet!</p>
+                    <p>Please go back to the Create Your Own Recipe Form, then come back and it will appear here.</p>
+                    <button className='user-recipe-button' onClick={() => navigate('/account/newuser-recipe')}>
+                        Go to Create Your Own Recipe Form
+                    </button>
+                </div>
+            ) : (
+                <div className='recipes-container'>
+                    {Array.isArray(newUserRecipe) && newUserRecipe.map((userRecipe) => (
+                        <div key={userRecipe.id} className='recipe-card'>
+                                <h2>
+                                    <u>{userRecipe.strMeal}</u>
+                                </h2>
+                                <img 
+                                    className='recipe-img'
+                                    src={userRecipe.strMealThumb}
+                                    onError={(e) => {
+                                        e.target.onerror = null; // Prevent infinite loop in case fallback fails
+                                        e.target.src = fallbackImage; 
+                                    }} />
+                                <br />
+                                <button onClick={() => addToFavourites(userRecipe.id)}>
+                                    Add Favourite
+                                </button>
+                                &nbsp;
+                                <button onClick={() => navigate(`/newuser-recipe/${userRecipe.idMeal}`)}>
+                                    More Info
+                                </button>
+                            </div>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default MyRecipes

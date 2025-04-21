@@ -16,6 +16,19 @@ input {
     border: none;
     border-radius: 17px;
     text-align: center;
+    width: 100%;
+    max-width: 1000px;
+}
+
+textarea {
+    font-family: 'Comic Sans', sans-serif;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 17px;
+    text-align: center;
+    width: 100%;
+    max-width: 1000px;
+    height: 150px;
 }
 
 button {

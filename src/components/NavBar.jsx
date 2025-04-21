@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
 import { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate, Routes, Route } from "react-router-dom";
 import '../css/navbar.css'
 
-function NavBar({ recipes, setSelectedRecipe, currentUser, setCurrentUser }){
+function NavBar({ recipes, currentUser, setCurrentUser }){
     const navigate = useNavigate();
     const dropdownRef = useRef(null);
     const inputRef = useRef(null);
@@ -50,7 +50,7 @@ function NavBar({ recipes, setSelectedRecipe, currentUser, setCurrentUser }){
                             ) {
                                 setSearchResults([]);
                             }
-                        }, 100);
+                        }, 150);
                     }}
                 />
                 </label>
@@ -59,11 +59,11 @@ function NavBar({ recipes, setSelectedRecipe, currentUser, setCurrentUser }){
                             {searchResults && searchResults.map((result) => (
                                 <li 
                                     key={result.idMeal}
-                                    onClick={() => {
-                                        setSelectedRecipe(result)
+                                    onMouseDown={() => {
                                         setSearchInput('');
                                         setSearchResults([]);
                                         navigate(`/recipe/${result.idMeal}`)
+                                        console.log('Clicked:', result);
                                     }}
                                 >
                                     {result.strMeal}
@@ -80,6 +80,9 @@ function NavBar({ recipes, setSelectedRecipe, currentUser, setCurrentUser }){
                     </Link>
                     {currentUser ? (
                         <>
+                            <Link to='/newuser-recipe'>
+                                CYOR
+                            </Link>
                             <Link to='account'>
                                 Your Account
                             </Link>
