@@ -143,7 +143,7 @@ function App() {
               }
             />
             <Route
-              path='/account/newuser-recipe'
+              path='/newuser-recipe'
               element={
                 <NewRecipeForm 
                   token={token}
