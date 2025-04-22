@@ -40,8 +40,6 @@ const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, favRecipes, setFavR
                 }
             });
 
-            // if (!res.ok) throw new Error('Failed to delete User Created Recipe');
-            // setNewUserRecipe((prev) => prev.filter((ucRecipe) => ucRecipe.id !== deleteUserRecipe));
             setIsLoadingUserRecipes(!isLoadingUserRecipes)
         } catch (error) {
             console.error(error);

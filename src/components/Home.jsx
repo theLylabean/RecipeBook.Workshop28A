@@ -24,10 +24,13 @@ const Home = () => {
                 </section>
                 <section className='section-container'>
                     <h2>
-                        Create Your Own Recipe!
+                        Add Your Own Recipe!
                     </h2>
                     <p>
                         Click below to fill out and upload your very own recipe! After submitting your recipe, the form will automatically save it to your account. You will be able to see all of your own creations in your account page and even save them to your favourites page!
+                        <br />
+                        <br />
+                        <span style={{ color: 'rgb(221, 5, 5)', fontSize: '1.5rem'}}>** You must be logged in to add your own recipes! **</span>
                     </p>
                     <button className='home-button' onClick={() => navigate('/newuser-recipe')}>
                         Go Now!

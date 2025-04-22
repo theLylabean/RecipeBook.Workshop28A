@@ -10,8 +10,8 @@
 }
 
 .home-button {
-    background-color: aquamarine;
-    box-shadow: 0 4px #14a583;
+    background-color: #8b5cf6;
+    box-shadow: 0 4px purple;
     max-width: 400px;
     margin: 0 auto;
     font-size: 2rem;
@@ -22,13 +22,13 @@
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    background-color: #8b5cf6;
-    box-shadow: 0 4px #5b21b6;
+    background-color: aquamarine;
+    box-shadow: 0 4px teal;
     border-radius: 17px;
     border: none;
     margin: 0 auto;
     width: 700px;
-    height: 300px;
+    height: 350px;
 }
 
 .home-container p {

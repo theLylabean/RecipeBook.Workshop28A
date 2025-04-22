@@ -1,3 +1,8 @@
 .myrecipes-container {
     text-align: center;
 }
+
+.myrecipes-container h1 {
+    text-align: center;
+    text-decoration: underline;
+}
