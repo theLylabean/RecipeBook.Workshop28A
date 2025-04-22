@@ -17,6 +17,7 @@ const AccountPage = ({ currentUser, isLoading, token, newUserRecipe, setNewUserR
                 <Link to='/account/favRecipes'>
                     Favourite Recipes
                 </Link>
+                &nbsp;
                 <Link to='/account/myrecipes'>
                     My Recipes
                 </Link>

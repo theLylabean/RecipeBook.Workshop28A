@@ -3,25 +3,49 @@ import '../css/favRecipes.css'
 import { useNavigate } from 'react-router-dom';
 import fallbackImage from '../pictures/kirb4.webp'
 
-const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, addToFavourites }) => {
+const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, setFavRecipes }) => {
     const navigate = useNavigate();
     const [isLoadingUserRecipes, setIsLoadingUserRecipes] = useState(true);
 
-    // const removeFavourite = async (userRecipesId) => {
-    //     try {
-    //         const res = await fetch(`https://fsa-recipe.up.railway.app/api/recipes/user-recipes/${userRecipesId}`, {
-    //             method: "DELETE",
-    //             headers: {
-    //               Authorization: `Bearer ${token}`,
-    //             }
-    //         });
+    const addToFavourites = async (addUserRecipe) => {
+        try {
+            const res = await fetch("https://fsa-recipe.up.railway.app/api/favorites", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                  mealId: addUserRecipe.idMeal,
+                  name: addUserRecipe.strMeal,
+                  imageUrl: addUserRecipe.strMealThumb,
+                  strArea: addUserRecipe.strArea,
+                })
+            });
 
-    //         if (!res.ok) throw new Error('Failed to delete favourite');
-    //         setNewUserRecipe((prev) => prev.filter((fav) => fav.id !== favouriteId));
-    //     } catch (error) {
-    //         console.error('Error removing favourite:', error);
-    //     }
-    // };
+            const result = await res.json();
+            console.log(result.message);
+            setFavRecipes((prev) => [...prev, result.data])
+        } catch (error) {
+            console.error('Error adding favourite:', error);
+        }
+    };
+
+    const removeUserRecipe = async (deleteUserRecipe) => {
+        try {
+            const res = await fetch(`https://fsa-recipe.up.railway.app/api/recipes/user-recipes/${deleteUserRecipe.idMeal}`, {
+                method: "DELETE",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                }
+            });
+
+            if (!res.ok) throw new Error('Failed to delete User Created Recipe');
+            setNewUserRecipe((prev) => prev.filter((ucRecipe) => ucRecipe.id !== deleteUserRecipe));
+        } catch (error) {
+            console.error(error);
+        }
+    };
  
     useEffect(() => {
         const fetchUserRecipes = async () => {
@@ -76,11 +100,15 @@ const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, addToFavourites }) 
                                         e.target.src = fallbackImage; 
                                     }} />
                                 <br />
-                                <button onClick={() => addToFavourites(userRecipe.id)}>
+                                <button onClick={() => addToFavourites(userRecipe)}>
                                     Add Favourite
                                 </button>
                                 &nbsp;
-                                <button onClick={() => navigate(`/newuser-recipe/${userRecipe.idMeal}`)}>
+                                <button onClick={() => removeUserRecipe(userRecipe)}>
+                                    Delete Recipe
+                                </button>
+                                &nbsp;
+                                <button onClick={() => navigate(`/recipe/${userRecipe.idMeal}`)}>
                                     More Info
                                 </button>
                             </div>

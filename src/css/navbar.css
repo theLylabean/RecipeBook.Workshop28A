@@ -36,9 +36,9 @@ label[for='search'] {
 
 .dropdown {
     position: absolute;
-    top: 70%; /* pushes it below the input */
+    top: 90%; /* pushes it below the input */
     left: 0;
-    right: 75px;
+    right: 70%;
     color: black;
     background-color: white;
     border: 1px solid #ccc;

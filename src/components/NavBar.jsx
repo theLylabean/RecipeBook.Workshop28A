@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useState } from "react";
 import { Link, useNavigate, Routes, Route } from "react-router-dom";
 import '../css/navbar.css'
@@ -31,46 +31,49 @@ function NavBar({ recipes, currentUser, setCurrentUser }){
 
     return (
         <nav className='navbar-container'>
-            <h2> My Recipe Book</h2>
-                <label htmlFor='search'>
-                    Search:
-                <input
-                    className='searchbar'
-                    placeholder='Search by keyword'
-                    type='text'
-                    id='search'
-                    name='search'
-                    value={searchInput}
-                    onChange={handleChange}
-                    onBlur={(e) => {
-                        setTimeout(() => {
-                            if (
-                                dropdownRef.current &&
-                                !dropdownRef.current.contains(document.activeElement)
-                            ) {
-                                setSearchResults([]);
-                            }
-                        }, 150);
-                    }}
-                />
-                </label>
-                    {searchInput.length > 0 && searchResults.length > 0 && (
-                        <ul ref={dropdownRef} className='dropdown'>
-                            {searchResults && searchResults.map((result) => (
-                                <li 
-                                    key={result.idMeal}
-                                    onMouseDown={() => {
-                                        setSearchInput('');
-                                        setSearchResults([]);
-                                        navigate(`/recipe/${result.idMeal}`)
-                                        console.log('Clicked:', result);
-                                    }}
-                                >
-                                    {result.strMeal}
-                                </li>
-                            ))}
-                        </ul>
-                    )}
+            <div className='search-container'>
+                <h2> My Recipe Book</h2>
+                    <label htmlFor='search'>
+                        Search:
+                    <input
+                        className='searchbar'
+                        placeholder='Search by keyword'
+                        type='text'
+                        id='search'
+                        name='search'
+                        value={searchInput}
+                        onChange={handleChange}
+                        onBlur={(e) => {
+                            setTimeout(() => {
+                                if (
+                                    dropdownRef.current &&
+                                    !dropdownRef.current.contains(document.activeElement)
+                                ) {
+                                    setSearchInput('')
+                                    setSearchResults([]);
+                                }
+                            }, 150);
+                        }}
+                    />
+                    </label>
+                        {searchInput.length > 0 && searchResults.length > 0 && (
+                            <ul ref={dropdownRef} className='dropdown'>
+                                {searchResults && searchResults.map((result) => (
+                                    <li 
+                                        key={result.idMeal}
+                                        onMouseDown={() => {
+                                            setSearchInput('');
+                                            setSearchResults([]);
+                                            navigate(`/recipe/${result.idMeal}`)
+                                            console.log('Clicked:', result);
+                                        }}
+                                    >
+                                        {result.strMeal}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+            </div>
                 <div className='nav-links'>
                     <Link to='/'>
                         Home 

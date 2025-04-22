@@ -61,7 +61,7 @@ function App() {
     console.log('Current user after restore:', currentUser);
   }, [currentUser]);
 
-  console.log(favRecipes);
+  // console.log(favRecipes);
 
   return (
     <div>
@@ -145,11 +145,13 @@ function App() {
             <Route
               path='/newuser-recipe'
               element={
-                <NewRecipeForm 
-                  token={token}
-                  newUserRecipe={newUserRecipe}
-                  setNewUserRecipe={setNewUserRecipe}
-                />
+                <PrivateRoute currentUser={currentUser} isLoading={isLoading}>
+                  <NewRecipeForm 
+                    token={token}
+                    newUserRecipe={newUserRecipe}
+                    setNewUserRecipe={setNewUserRecipe}
+                  />
+                </PrivateRoute>
                 }
             />
             <Route
@@ -159,6 +161,7 @@ function App() {
                   token={token}
                   newUserRecipe={newUserRecipe}
                   setNewUserRecipe={setNewUserRecipe}
+                  setFavRecipes={setFavRecipes}
                 />
               }
             />

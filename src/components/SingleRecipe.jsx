@@ -47,7 +47,7 @@ const SingleRecipe = () => {
                             </div>
                         )
                     }
-                    <button className='back-button' onClick={() => navigate('/recipeList')}>
+                    <button className='back-button' onClick={() => navigate(-1)}>
                         Go Back
                     </button>
                 </div>

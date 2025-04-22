@@ -35,32 +35,42 @@ const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe, token }) => {
     };
 
     return (
-        <div className='recipes-container'>
-            {recipes.map((recipe) => {
-                const {strMeal, idMeal, strMealThumb} = recipe;
-                return (
-                    <div key={idMeal} className='recipe-card'>
-                        <h2>
-                            <u>{strMeal}</u>
-                        </h2>
-                        <img 
-                            className='recipe-img'
-                            src={strMealThumb}
-                            onError={(e) => {
-                                e.target.onerror = null; // Prevent infinite loop in case fallback fails
-                                e.target.src = fallbackImage; 
-                            }} />
-                        <br />
-                        <button onClick={() => addToFavourites(recipe)}>
-                            Favourite
-                        </button>
-                        &nbsp;
-                        <button onClick={() => handleClick(recipe)}>
-                            More Info
-                        </button>
-                    </div>
-                )
-            })}
+        <div>
+            <div className='recipes-header-container'>
+                <h1>
+                    Recipe List
+                </h1>
+                <p>
+                    Browse through our list of recipes and add the ones you like the most or want to remember for later to your favourites list! If you want to read more about the recipe like the ingredients, where it comes from, and the instructions, click more info.
+                </p>
+            </div>
+            <div className='recipes-container'>
+                {recipes.map((recipe) => {
+                    const {strMeal, idMeal, strMealThumb} = recipe;
+                    return (
+                        <div key={idMeal} className='recipe-card'>
+                            <h2>
+                                <u>{strMeal}</u>
+                            </h2>
+                            <img 
+                                className='recipe-img'
+                                src={strMealThumb}
+                                onError={(e) => {
+                                    e.target.onerror = null; // Prevent infinite loop in case fallback fails
+                                    e.target.src = fallbackImage; 
+                                }} />
+                            <br />
+                            <button onClick={() => addToFavourites(recipe)}>
+                                Favourite
+                            </button>
+                            &nbsp;
+                            <button onClick={() => handleClick(recipe)}>
+                                More Info
+                            </button>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     )
 }

@@ -29,8 +29,7 @@ const NewRecipeForm = ({ token, newUserRecipe, setNewUserRecipe }) => {
 
     const handleNewUserRecipeSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form Submitted ✅');
-        alert("Recipe Created!");
+        // console.log('Form Submitted ✅');
 
         for (const key in newUserRecipe) {
             const value = newUserRecipe[key];
@@ -41,10 +40,10 @@ const NewRecipeForm = ({ token, newUserRecipe, setNewUserRecipe }) => {
             }
           }
           
-console.log('Using token:', token)
+// console.log('Using token:', token)
 console.log("🔥 FORM DATA:", newUserRecipe);
 console.log("🔥 Sending JSON:", JSON.stringify(newUserRecipe));
-console.log("🔥 Token:", token);
+// console.log("🔥 Token:", token);
 
         try {
             const res = await fetch("https://fsa-recipe.up.railway.app/api/recipes/user-recipes", {
@@ -69,7 +68,8 @@ console.log("🔥 Token:", token);
             if (result.token && result.username) {
                 setToken(result.token)
                 setNewUserRecipe(result);
-                navigate('/account/newuser-recipe');
+                alert("Recipe Created!");
+                navigate('/account/myrecipes');
         } else {
             setNewRecipeError(result.message || 'Error Message');
         }

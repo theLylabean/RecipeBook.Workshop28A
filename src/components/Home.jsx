@@ -15,6 +15,9 @@ const Home = ({ newUserRecipe, setNewUserRecipe, token }) => {
                     <h2>
                         Click Below to See All of Our Recipes!
                     </h2>
+                    <p>
+                        We have a large selection of recipes to browse through! From Sweet and Sour Chicken to Fish Tacos. You'll have the option to add your favourites to a list that you can access on your account page. Thanks for visiting!
+                    </p>
                     <button className='home-button' onClick={() => navigate("/recipeList")}>
                         Click Here!
                     </button>
