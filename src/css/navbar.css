@@ -1,7 +1,5 @@
 .navbar-container {
-    display: flex;
-    justify-content: space-between; /* Pushes logo left, links right */
-    align-items: center;
+    display: inline-block;
     padding: 1rem;
     background-color: aquamarine;
     border-radius: 12px;
@@ -10,7 +8,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    min-width: 700px;
+    min-width: 600px;
     z-index: 20;
     max-width: 100%;
     overflow-x: hidden;
@@ -19,8 +17,9 @@
     overflow: visible;
 }
 
-.navbar-container h2 {
+h2 {
     font-size: 2rem;
+    text-align: center;
 }
 
 .searchbar {
@@ -30,7 +29,8 @@
 
 label[for='search'] {
     display: inline-flex;
-    align-items: center;
+    float: left;
+    /* align-items: center; */
     gap: 3px;
     font-size: 2rem;
 }
@@ -65,12 +65,12 @@ label[for='search'] {
 }
 
 .nav-links {
-    display: flex;
-    gap: .75rem; /* spacing between links */
+    float: right;
 }
 
 .nav-links a {
-    /* font-size: 1rem; */
+    display: inline-block;
+    margin: 0.25rem;
     text-decoration: none;
     background-color: #8b5cf6;
     color: black;

@@ -47,3 +47,132 @@ ul {
     list-style-type: none;
     padding-left: 0;
 }
+
+/* @media only screen and (max-width: 600px){
+    .header-container {
+        display: flex;
+        justify-content: center;
+        margin: 3rem auto;
+    }
+    
+    .home-container {
+        display: inline-block;
+    }
+    
+    .home-button {
+        background-color: #8b5cf6;
+        box-shadow: 0 4px purple;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .section-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        background-color: aquamarine;
+        box-shadow: 0 4px teal;
+        border-radius: 17px;
+        border: none;
+        margin: 2rem auto;
+        width: 100%;
+        min-width: 400px;
+        max-width: 575px;
+        height: auto;
+    }
+    
+    .home-container p {
+        max-width: 575px;
+    }
+    
+    .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        background-color: aquamarine;
+        border-radius: 12px;
+        box-shadow: 0 4px teal;
+        position: sticky;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-width: 700px;
+        z-index: 20;
+        max-width: 100%;
+        overflow-x: hidden;
+        box-sizing: border-box;
+        color: Black;
+        overflow: visible;
+    }
+    
+    .navbar-container h2 {
+        font-size: 1rem;
+    }
+    
+    .searchbar {
+        width: 100%;
+        min-width: 200px;
+    }
+    
+    label[for='search'] {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 2rem;
+    }
+    
+    .dropdown {
+        position: absolute;
+        top: 90%;
+        left: 0;
+        right: 70%;
+        color: black;
+        background-color: white;
+        border: 1px solid #ccc;
+        z-index: 10;
+        width: 100%;
+        max-width: 300px;
+        max-height: 200px;
+        overflow-y: auto;
+        list-style: none;
+        padding: 0;
+        margin: 0 auto;
+        border-radius: 4px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .dropdown:hover {
+        cursor: pointer;
+    
+    }
+    
+    .dropdown li:hover {
+        background-color: #8b5cf6;
+    }
+    
+    .nav-links {
+        display: inline-block;
+        gap: .75rem;
+    }
+    
+    .nav-links a {
+        text-decoration: none;
+        background-color: #8b5cf6;
+        color: black;
+        font-family: 'KirbyClassic';
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        box-shadow: 0 4px purple;
+        cursor: pointer;
+        transition: all 0.1s ease;
+    }
+    
+    .nav-links a:hover {
+        cursor: pointer;
+        color: rgb(251, 160, 175);
+        transform: scale(1.1);
+    }
+} */

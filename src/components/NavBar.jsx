@@ -18,21 +18,22 @@ function NavBar({ recipes, currentUser, setCurrentUser }){
             (recipe.strTags && recipe.strTags.toLowerCase().includes(searchInput.toLowerCase()))
           });
           console.log(filteredRecipes);
+          
+          setSearchInput(value);
+          setSearchResults(filteredRecipes);
+        };
         
-        setSearchInput(value);
-        setSearchResults(filteredRecipes);
-    };
-
-    const handleLogout = () => {
-        setCurrentUser(null);
-        localStorage.removeItem('token');
-        navigate('/');
-    };
-
-    return (
-        <nav className='navbar-container'>
-            <div className='search-container'>
-                <h2> My Recipe Book</h2>
+        const handleLogout = () => {
+            setCurrentUser(null);
+            localStorage.removeItem('token');
+            navigate('/');
+        };
+        
+        return (
+            <div>
+            <h2> My Recipe Book</h2>
+            <nav className='navbar-container'>
+                <div className='search-container'>
                     <label htmlFor='search'>
                         Search:
                     <input
@@ -54,19 +55,19 @@ function NavBar({ recipes, currentUser, setCurrentUser }){
                                 }
                             }, 150);
                         }}
-                    />
+                        />
                     </label>
                         {searchInput.length > 0 && searchResults.length > 0 && (
                             <ul ref={dropdownRef} className='dropdown'>
                                 {searchResults && searchResults.map((result) => (
                                     <li 
-                                        key={result.idMeal}
-                                        onMouseDown={() => {
-                                            setSearchInput('');
-                                            setSearchResults([]);
-                                            navigate(`/recipe/${result.idMeal}`)
-                                            console.log('Clicked:', result);
-                                        }}
+                                    key={result.idMeal}
+                                    onMouseDown={() => {
+                                        setSearchInput('');
+                                        setSearchResults([]);
+                                        navigate(`/recipe/${result.idMeal}`)
+                                        console.log('Clicked:', result);
+                                    }}
                                     >
                                         {result.strMeal}
                                     </li>
@@ -108,6 +109,7 @@ function NavBar({ recipes, currentUser, setCurrentUser }){
                     )}
                 </div>
         </nav>
+        </div>
     );
 }
 

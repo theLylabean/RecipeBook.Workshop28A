@@ -6,11 +6,11 @@ const Home = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div className='home-container'>
             <div className='header-container'>
                 <Header />
             </div>
-            <div className='home-container'>
+            <div className='home-body-container'>
                 <section className='section-container'>
                     <h2>
                         Click Below to See All of Our Recipes!
