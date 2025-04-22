@@ -62,85 +62,90 @@ function SignUpForm({ setCurrentUser, setToken }){
     }
 
     return (
-        <div className='form-container'>
-            <form className='form-columns' onSubmit={handleSubmit}>
-            <div className='form-row'>
-                <div className='form-field'>
-                <label>First Name:</label>
-                <input
-                    type='text'
-                    name='firstName'
-                    value={createUserAccount.firstName}
-                    onChange={handleChange}
-                    placeholder='Enter First Name Here'
-                />
+        <div className='signup-container'>
+            <h1>
+                Sign Up Below!
+            </h1>
+            <div className='form-container'>
+                <form className='form-columns' onSubmit={handleSubmit}>
+                <div className='form-row'>
+                    <div className='form-field'>
+                    <label>First Name:</label>
+                    <input
+                        type='text'
+                        name='firstName'
+                        value={createUserAccount.firstName}
+                        onChange={handleChange}
+                        placeholder='Enter First Name Here'
+                    />
+                    </div>
+
+                    <div className='form-field'>
+                    <label>Last Name:</label>
+                    <input
+                        type='text'
+                        name='lastName'
+                        value={createUserAccount.lastName}
+                        onChange={handleChange}
+                        placeholder='Enter Last Name Here'
+                    />
+                    </div>
                 </div>
 
-                <div className='form-field'>
-                <label>Last Name:</label>
-                <input
-                    type='text'
-                    name='lastName'
-                    value={createUserAccount.lastName}
-                    onChange={handleChange}
-                    placeholder='Enter Last Name Here'
-                />
-                </div>
-            </div>
+                <div className='form-row'>
+                    <div className='form-field'>
+                    <label>Email:</label>
+                    <input
+                        type='text'
+                        name='email'
+                        value={createUserAccount.email}
+                        onChange={handleChange}
+                        placeholder='Enter Email Here'
+                    />
+                    </div>
 
-            <div className='form-row'>
-                <div className='form-field'>
-                <label>Email:</label>
-                <input
-                    type='text'
-                    name='email'
-                    value={createUserAccount.email}
-                    onChange={handleChange}
-                    placeholder='Enter Email Here'
-                />
+                    <div className='form-field'>
+                    <label>Password:</label>
+                    <input
+                        type='password'
+                        name='password'
+                        value={createUserAccount.password}
+                        onChange={handleChange}
+                        placeholder='Enter Password Here'
+                    />
+                    </div>
                 </div>
 
-                <div className='form-field'>
-                <label>Password:</label>
-                <input
-                    type='password'
-                    name='password'
-                    value={createUserAccount.password}
-                    onChange={handleChange}
-                    placeholder='Enter Password Here'
-                />
+                <div className='form-row'>
+                    <div className='form-field'>
+                    <label>Confirm Password:</label>
+                    <input
+                        type='password'
+                        name='confirmPassword'
+                        value={createUserAccount.confirmPassword}
+                        onChange={handleChange}
+                        placeholder='Confirm Password'
+                    />
+                    </div>
                 </div>
-            </div>
 
-            <div className='form-row'>
-                <div className='form-field'>
-                <label>Confirm Password:</label>
-                <input
-                    type='password'
-                    name='confirmPassword'
-                    value={createUserAccount.confirmPassword}
-                    onChange={handleChange}
-                    placeholder='Confirm Password'
-                />
+                <div className='form-button'>
+                    <button type='submit'
+                    // disabled={
+                    //     !createUserAccount.firstName ||
+                    //     !createUserAccount.lastName ||
+                    //     !createUserAccount.email ||
+                    //     !createUserAccount.password ||
+                    //     !createUserAccount.confirmPassword
+                    // }
+                    >
+                        Submit
+                    </button>
                 </div>
-            </div>
-
-            <div className='form-button'>
-                <button type='submit'
-                // disabled={
-                //     !createUserAccount.firstName ||
-                //     !createUserAccount.lastName ||
-                //     !createUserAccount.email ||
-                //     !createUserAccount.password ||
-                //     !createUserAccount.confirmPassword
-                // }
-                >
-                    Submit
-                </button>
-            </div>
-            </form>
-            <div className='error-container'>
-                {signUpError && <p className='error-message'>{signUpError}</p>}
+                </form>
+                <div className='error-container'>
+                    {signUpError && <p className='error-message'>{signUpError}</p>}
+                </div>
             </div>
         </div>
     );

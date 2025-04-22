@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from './Header';
 import '../css/home.css';
 
-const Home = ({ newUserRecipe, setNewUserRecipe, token }) => {
+const Home = () => {
     const navigate = useNavigate();
 
     return (

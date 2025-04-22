@@ -1,8 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import '../css/accountPage.css';
 
-const AccountPage = ({ currentUser, isLoading, token, newUserRecipe, setNewUserRecipe, addToFavourites }) => {
-    const navigate = useNavigate();
+const AccountPage = ({ currentUser, isLoading }) => {
+    // const navigate = useNavigate();
 
     if (isLoading) {
         return <p>Loading...</p>;

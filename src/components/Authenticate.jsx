@@ -5,11 +5,6 @@ function Authenticate({ setCurrentUser, token, setIsLoading }){
     const navigate = useNavigate();
 
     useEffect(() => {
-    // if (!token) {
-    //     navigate('/login');
-    //     return;
-    // }
-
     const fetchUser = async () => {
           try {
             const res = await fetch("https://fsa-recipe.up.railway.app/api/auth/me", {
@@ -37,7 +32,6 @@ function Authenticate({ setCurrentUser, token, setIsLoading }){
           fetchUser();
         } else {
           setIsLoading(false);
-          navigate('/login');
         }
           console.log('Authenticating with token:', token);
       }, [token]);
