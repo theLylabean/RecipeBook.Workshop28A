@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import '../css/recipeList.css'
 import fallbackImage from '../pictures/kirby3.jpg'
 
-const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe, token }) => {
+const RecipeList = ({ recipes, favRecipes, setFavRecipes, setSingleRecipe, token }) => {
     const navigate = useNavigate();
 
     const handleClick = (recipe) => {
@@ -34,6 +34,21 @@ const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe, token }) => {
         }
     };
 
+    const removeFavourite = async (favouriteId) => {
+        try {
+            const res = await fetch(`https://fsa-recipe.up.railway.app/api/favorites/${favouriteId}`, {
+                method: "DELETE",
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                }
+            });
+            // setFavRecipes((prev) => prev.filter((fav) => fav.id !== favouriteId));
+            setIsLoadingFaves(!isLoadingFaves)
+        } catch (error) {
+            console.error('Error removing favourite:', error);
+        }
+    };
+
     return (
         <div>
             <div className='recipes-header-container'>
@@ -60,9 +75,9 @@ const RecipeList = ({ recipes, setFavRecipes, setSingleRecipe, token }) => {
                                     e.target.src = fallbackImage; 
                                 }} />
                             <br />
-                            <button onClick={() => addToFavourites(recipe)}>
-                                Favourite
-                            </button>
+                            {Array.isArray(favRecipes) && favRecipes.some(fav => fav.idMeal === recipe.idMeal)
+                            ? <button className='unfavourite-button' onClick={() => removeFavourite(recipe)}>Unfavourite</button>
+                            : <button onClick={() => addToFavourites(recipe)}>Favourite</button>}
                             &nbsp;
                             <button onClick={() => handleClick(recipe)}>
                                 More Info

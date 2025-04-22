@@ -9,3 +9,9 @@
     margin: 0 auto;
     font-size: 1.2rem;
 }
+
+.unfavourite-button {
+    background-color: pink;
+    box-shadow: 0 4px rgb(250, 73, 153);
+    
+}

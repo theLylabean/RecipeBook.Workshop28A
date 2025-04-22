@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: aquamarine;
+    background-color: pink;
     font-family: 'KirbyClassic', sans-serif;
 }
 
@@ -32,13 +32,13 @@ textarea {
 }
 
 button {
-    background-color: aquamarine;
+    background-color: #8b5cf6;
     color: black;
     font-family: 'KirbyClassic';
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
-    box-shadow: 0 4px #14a583;
+    box-shadow: 0 4px purple;
     cursor: pointer;
     transition: all 0.1s ease;
 }

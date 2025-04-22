@@ -3,9 +3,9 @@
     justify-content: space-between; /* Pushes logo left, links right */
     align-items: center;
     padding: 1rem;
-    background-color: #8b5cf6;
+    background-color: aquamarine;
     border-radius: 12px;
-    box-shadow: 0 4px #5b21b6;
+    box-shadow: 0 4px teal;
     position: sticky;
     top: 0;
     left: 0;
@@ -14,7 +14,7 @@
     max-width: 100%;
     overflow-x: hidden;
     box-sizing: border-box;
-    color: white;
+    color: Black;
     overflow: visible;
 }
 
@@ -71,13 +71,13 @@ label[for='search'] {
 .nav-links a {
     /* font-size: 1rem; */
     text-decoration: none;
-    background-color: #a6ffea;
+    background-color: #8b5cf6;
     color: black;
     font-family: 'KirbyClassic';
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 6px;
-    box-shadow: 0 4px #14a583;
+    box-shadow: 0 4px purple;
     cursor: pointer;
     transition: all 0.1s ease;
 }

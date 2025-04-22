@@ -3,7 +3,7 @@ import '../css/favRecipes.css'
 import { useNavigate } from 'react-router-dom';
 import fallbackImage from '../pictures/kirb4.webp'
 
-const FavRecipes = ({ favRecipes, setFavRecipes, token, handleClick }) => {
+const FavRecipes = ({ favRecipes, setFavRecipes, token }) => {
     const navigate = useNavigate();
     const [isLoadingFaves, setIsLoadingFaves] = useState(true);
 
@@ -15,9 +15,8 @@ const FavRecipes = ({ favRecipes, setFavRecipes, token, handleClick }) => {
                   Authorization: `Bearer ${token}`,
                 }
             });
-
-            if (!res.ok) throw new Error('Failed to delete favourite');
-            setFavRecipes((prev) => prev.filter((fav) => fav.id !== favouriteId));
+            // setFavRecipes((prev) => prev.filter((fav) => fav.id !== favouriteId));
+            setIsLoadingFaves(!isLoadingFaves)
         } catch (error) {
             console.error('Error removing favourite:', error);
         }

@@ -3,7 +3,7 @@ import '../css/favRecipes.css'
 import { useNavigate } from 'react-router-dom';
 import fallbackImage from '../pictures/kirb4.webp'
 
-const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, setFavRecipes }) => {
+const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, favRecipes, setFavRecipes }) => {
     const navigate = useNavigate();
     const [isLoadingUserRecipes, setIsLoadingUserRecipes] = useState(true);
 
@@ -40,8 +40,9 @@ const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, setFavRecipes }) =>
                 }
             });
 
-            if (!res.ok) throw new Error('Failed to delete User Created Recipe');
-            setNewUserRecipe((prev) => prev.filter((ucRecipe) => ucRecipe.id !== deleteUserRecipe));
+            // if (!res.ok) throw new Error('Failed to delete User Created Recipe');
+            // setNewUserRecipe((prev) => prev.filter((ucRecipe) => ucRecipe.id !== deleteUserRecipe));
+            setIsLoadingUserRecipes(!isLoadingUserRecipes)
         } catch (error) {
             console.error(error);
         }
@@ -100,9 +101,9 @@ const MyRecipes = ({ token, newUserRecipe, setNewUserRecipe, setFavRecipes }) =>
                                         e.target.src = fallbackImage; 
                                     }} />
                                 <br />
-                                <button onClick={() => addToFavourites(userRecipe)}>
-                                    Add Favourite
-                                </button>
+                                {Array.isArray(favRecipes) && favRecipes.some(fav => fav.idMeal === userRecipe.idMeal)
+                                ? <button className='unfavourite-button' onClick={() => removeFavourite(userRecipe)}>Unfavourite</button>
+                                : <button onClick={() => addToFavourites(userRecipe)}>Favourite</button>}
                                 &nbsp;
                                 <button onClick={() => removeUserRecipe(userRecipe)}>
                                     Delete Recipe

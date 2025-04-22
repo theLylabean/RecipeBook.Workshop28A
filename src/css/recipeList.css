@@ -32,10 +32,10 @@
     display: block;
     margin: .25rem;
     padding-bottom: .5rem;
-    background-color: #8b5cf6;
+    background-color: aquamarine;
     border-radius: 17px;
     border: none;
-    box-shadow: 0 4px #5b21b6;
+    box-shadow: 0 4px teal;
 
 }
 

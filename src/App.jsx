@@ -87,6 +87,7 @@ function App() {
                 <RecipeList 
                   recipes={recipes} 
                   setRecipes={setRecipes} 
+                  favRecipes={favRecipes}
                   setFavRecipes={setFavRecipes}
                   setSingleRecipe={setSingleRecipe}
                   token={token} /> 
@@ -161,6 +162,7 @@ function App() {
                   token={token}
                   newUserRecipe={newUserRecipe}
                   setNewUserRecipe={setNewUserRecipe}
+                  favRecipes={favRecipes}
                   setFavRecipes={setFavRecipes}
                 />
               }
