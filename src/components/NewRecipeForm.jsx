@@ -16,17 +16,6 @@ const NewRecipeForm = ({ token, newUserRecipe, setNewUserRecipe }) => {
         }));
     };
 
-    // const handleNewUserRecipeSubmit = async (e) => {
-    //     e.preventDefault();
-    //     console.log("🔍 FORM SUBMITTED");
-      
-    //     alert("Submitted the form!");
-      
-    //     setTimeout(() => {
-    //       console.log("✅ Still inside the form function after 1 second");
-    //     }, 1000);
-    //   };
-
     const handleNewUserRecipeSubmit = async (e) => {
         e.preventDefault();
         // console.log('Form Submitted ✅');
